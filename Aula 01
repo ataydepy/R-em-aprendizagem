@@ -1,0 +1,6 @@
+Nome <- c("guaraci","luiz","sabrina","john","victor")
+Idade <- c(37,20,22,21,18)
+Cidade <- c("sp","betim","vicosa","bh","betim")
+Afinidade <-  c(8,7,10,10,7)
+dados <- data.frame(Nome,Idade,Cidade,Afinidade)
+hist(Afinidade)

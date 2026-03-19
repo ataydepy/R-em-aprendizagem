@@ -1,0 +1,24 @@
+library(tidyverse)
+library(dados)
+library(ggthemes)
+
+#Banco de dados
+pinguins
+
+#Estrutura de dados pinguins
+str(pinguins)
+
+#Puxando a massa do banco de dados
+massa <- pinguins$massa_corporal
+
+#Calculando a média da massa
+mean(massa, na.rm = TRUE)
+
+#Criando uma visualização no GGPLOT
+ggplot(pinguins,
+       aes(comprimento_nadadeira,
+           massa_corporal,)) +
+  geom_point(aes(color = especie)) +
+  geom_smooth(method = "lm")
+  
+  

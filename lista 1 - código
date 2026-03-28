@@ -1,0 +1,84 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lista R - Visualização de Dados
+
+## Questão 1 -
+
+### A)
+
+Ciência de dados é a ciência que estuda o comportamento dos dados presentes no universo. Essa ciência, apesar de antiga, tem como seu ápice o surgimento dos computadores e softwares, isso porque a partir da computação os registros passaram a ser digitais.
+
+### B)
+
+Um cientista de dados, normalmente, trabalha com uma equipe especializada em data science, mas também pode exercer sua função como analista de forma individual, por meio de contratos com empresas e empreendedores que visam extrair dados dos bancos.
+
+### C)
+
+O R é uma das melhores linguagens de programação no meio matemático. Tem ótimas respostas em um curto período de tempo e, como a ciência de dados trabalha ao lado da estatística, a matemática está totalmente ligada à profissão.
+
+### D)
+
+A computação é o meio principal de fazer uma boa análise de dados, a partir das linguagens de programação, como R, SQL, Python entre outras.
+
+### E)
+
+Sim, pois apesar do profissional aplicador de ferramentas saber colocar em prática o necessário, ele corre um maior risco de não saber a teoria presente em seu trabalho, assim, dificultando a resolução de bugs, erros no sistema e outros empecilhos.
+
+### F)
+
+Visualização de dados, como o próprio nome já diz, é utilizar de ferramentas, normalmente computacionais, para analisar os dados de certo banco, podendo ser de empresas, locais, empreendimentos entre outros.
+
+### G)
+
+Um gráfico bom é aquele que é facilmente entendido pelos leitores, aquele que não possui duplicidade de interpretação ou não é claro suficiente ao público. Logo, um bom gráfico necessita mostrar ao público uma coesão e coerência.
+
+## Questão 2 -
+
+```{r}
+library(tidyverse)
+library(dados)
+library(ggthemes)
+
+#Banco de dados
+pinguins
+
+#Estrutura de dados pinguins
+str(pinguins)
+
+#Criando uma visualização no GGPLOT
+ggplot(pinguins,
+       aes(profundidade_bico,
+           comprimento_bico,)) +
+  geom_point(aes(color = especie)) +
+  geom_smooth(method = "lm")
+  
+```
+
+### A)
+
+Conforme visto na construção do gráfico a profundidade do bico se relaciona diretamente com o comprimento do bico, no entanto, de forma negativa, pois quanto maior o bico, menor sua profundida e vice-versa.
+
+### B)
+
+Cada espécie apresenta um comportamento diferente, como retratado no gráfico acima.
+
+## Questão 3-
+
+Esses dois gráficos apresentam diferenças, visto que, enquanto o gráfico 1 possui a função de\
+mapping dentro do elemento estético geral, o gráfico 2 especifica a função mapping dentro de dois elementos geométricos (geom), logo, será formados gráficos diferentes, sendo o gráfico 2 mais completo e correto se o intuito for a melhor percepção de cada elemento, seja estético ou geométrico.
+
+## Questão 4-
+
+O atributo estético referente a profundidade do bico deve ser mapeado no nível de geometria, tendo em vista que no gráfico ele é representado por pontos. Dessa maneira, a forma ideal de construir esse gráfico é colocar o atributo na função geom_point.
+
+## Questão 5-
+
+### A)
+
+O que ocorreu, provavelmente, foi que o código poderia até ter sido escrito de forma correta, no entanto, a IA tende aproveitar a escala de forma automática e há, consequentemente, uma distorção no eixo.
+
+### B)
+
+Provavelmente eu utilizaria a IA como base teórica do código, mas buscaria entender como ele foi feito e programado para ter um melhor desempenho.

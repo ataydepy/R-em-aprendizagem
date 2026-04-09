@@ -1,0 +1,55 @@
+---
+title: "Titanic"
+format: html
+editor: visual
+---
+
+# Análise do Banco Titanic
+
+## Elementos de escrita
+
+O que aprendemos em R markdown funciona aqui!
+
+Criar bullet points:
+
+-   item 1
+
+-   item 2
+
+Listas enumeradas:
+
+1.  item número 1
+    1.  subitem 1.1
+2.  item número 2
+
+Formatação simples como **negrito**, *itálico,* ...
+
+A Ciência de Dados é uma área ampla. [^1]
+
+[^1]: Envolve matemática, estatística, computação e outras áreas.
+
+| vetor i | vetor j | vetor k |
+|---------|---------|---------|
+| 1       | 1       | 7       |
+| 5       | 0       | 6       |
+| 3       | 1       | -1      |
+
+```{r}
+#|label: setup 
+#|echo: true
+#|message: false
+#|warning: false
+
+library(tidyverse)
+library(reticulate)
+
+```
+
+# Importando os dados
+
+Vamos importar os dados `titanic.csv` no R.
+
+```{r}
+dados <- read_csv("aula4/titanic.csv")
+head(Titanic)
+```

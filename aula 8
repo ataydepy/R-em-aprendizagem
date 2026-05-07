@@ -1,0 +1,99 @@
+# Carregando os pacotes, o pacote gt e o gtExtras cria tabelas elegantes em html que podem ser utilizadas em Dashboards 
+library(tidyverse)
+library(gt)
+library(gtExtras)
+
+# Criando a primeira tabela
+mtcars %>% 
+  rownames_to_column("car") %>% 
+  gt()
+
+
+
+# Temas e título (use tab_header e aspas)
+mtcars %>% 
+  rownames_to_column("car") %>% 
+  gt() %>% 
+  gt_theme_nytimes() %>% 
+  tab_header(
+    title = "Carros Antigos e Suas Características",
+    subtitle = "Dados da revista Motor Trend dos EUA, de 1974"
+  )
+
+# Criando o seu tema
+my_theme <- function(gt_object, ...){
+  gt_object %>% 
+    tab_options(
+      column_labels.background.color = "purple3",
+      heading.align = "center",
+      ...
+    ) %>% 
+    tab_style(
+      style = cell_text(color = "green4", size = px(32)),
+      locations = cells_title("title")
+    )
+}
+
+#
+mtcars %>% 
+  rownames_to_column("car") %>% 
+  gt() %>% 
+  my_theme() %>% 
+  tab_header(
+    title = "Carros Antigos e Suas Características",
+    subtitle = "Dados da revista Motor Trend dos EUA, de 1974"
+  )
+
+# Mapa de calor (degradê nos valores e arrenge para arranjar os valores)
+mtcars %>% 
+  arrange(mpg) %>% 
+  rownames_to_column("car") %>% 
+  gt() %>% 
+  my_theme() %>% 
+  gt_hulk_col_numeric(mpg) %>% 
+  tab_header(
+    title = "Carros Antigos e Suas Características",
+    subtitle = "Dados da revista Motor Trend dos EUA, de 1974"
+  )
+
+
+# Mudando cores com a função data_color()
+mtcars %>% 
+  arrange(mpg) %>% 
+  rownames_to_column("car") %>% 
+  gt() %>% 
+  my_theme() %>% 
+  data_color(c(mpg,disp), colors = c("white", "green4")) %>% 
+  tab_header(
+    title = "Carros Antigos e Suas Características",
+    subtitle = "Dados da revista Motor Trend dos EUA, de 1974"
+  )
+
+
+mtcars %>% 
+  arrange(mpg) %>% 
+  rownames_to_column("car") %>% 
+  gt() %>% 
+  my_theme() %>% 
+  gt_highlight_rows(
+    rows = 3,
+    fill = "purple",
+    font_color = "grey80"
+    ) %>% 
+  tab_style(
+    style = cell_text(color = "grey80"),
+    locations = cells_body(rows = 3)
+  )
+  gt_theme_nytimes() %>% 
+  tab_header(
+    title = "Carros Antigos e Suas Características",
+    subtitle = "Dados da revista Motor Trend dos EUA, de 1974"
+  )
+
+
+# Misturando gráficos e tabelas
+  mtcars %>% 
+    group_by(cyl) %>% 
+    summarise(dados_mpg = list(mpg)) %>% 
+    gt() %>% 
+    gt_plt_dist(dados_mpg)

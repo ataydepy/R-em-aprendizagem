@@ -70,3 +70,46 @@ mpg %>%
   geom_bar()
 ```
 
+
+# Mais um
+
+## Row
+
+```{r}
+#| content: valuebox
+#| title: Média de Consumo na Cidade
+
+valor <- round(mean(mpg$cty),1)
+
+list(
+  icon = "fuel-pump",
+  color = "primary",
+  value = paste(valor,"mpg")
+)
+```
+
+
+```{r}
+#| content: valuebox
+#| title: Modelos únicos
+
+list(
+  icon = "car-front",
+  color = "info",
+  value = "38"
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: Maior motor
+
+list(
+  icon = "speedometer",
+  color = "danger",
+  value = "7.0 l"
+)
+```
+
+
+

@@ -1,0 +1,72 @@
+---
+title: "Carros Antigos"
+format:
+  dashboard:
+    theme: 
+      light: pulse
+      dark: darkly
+    nav-buttons: 
+      - icon: linkedin
+        href: https://www.linkedin.com/
+        title: linkedin
+    scrolling: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+library(tidyverse)
+
+
+
+```
+# Consumo e Eficiência
+## Row {height=70%}
+
+```{r}
+mpg %>% 
+  ggplot(aes(x=cty, y = hwy)) +
+  geom_point()
+
+```
+
+## Row {heigth=30%}
+
+### Column {width=70%}
+
+```{r}
+mpg %>% 
+  ggplot(aes(x = cyl)) +
+  geom_bar()
+```
+
+### Column {width=30%}
+texto aqui!
+
+# Outra página {orientation="columns"}
+
+## {.sidebar}
+
+Esta dashboard foi criada em uma aula de Visualização de Dados na UFV - Florestal no dia 14/05/2026.
+
+## Column {.tabset}
+
+```{r}
+mpg %>% 
+  ggplot(aes(x=cty, y = hwy)) +
+  geom_point()
+```
+
+```{r}
+mpg %>% 
+  ggplot(aes(x=cty, y = manufacturer)) +
+  geom_point()
+```
+## Column
+```{r}
+mpg %>% 
+  ggplot(aes(x = cyl)) +
+  geom_bar()
+```
+

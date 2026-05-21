@@ -1,0 +1,84 @@
+# Carregando os pacotes necessários
+library(tidyverse)
+library(dslabs)
+library(plotly)
+library(gganimate)
+library(ggplot2)
+
+# Carregando os dados
+glimpse(gapminder)
+
+#Criando a variável PIB per Capita 
+gap_anual <- 
+  gapminder %>% 
+  mutate(gdpcapita = gdp/population) %>% 
+  filter(year <= 2011) %>% 
+  drop_na(gdpcapita, life_expectancy, population)
+
+glimpse(gap_anual)
+
+# Gráfico transversal 
+p <- gap_2011 %>% 
+  ggplot(aes(
+    x = gdpcapita,
+    y = life_expectancy,
+    color = continent,
+    size = population,
+    text = paste(
+      "País:", country,
+      "<br>PIB per capita:", round(gdpcapita, 0),
+      "<br>Expectativa de vida:", round(life_expectancy, 0), "anos",
+      "<br>População:", scales::comma(population)
+    )
+  )) +
+  geom_point(alpha = 0.7) +
+  scale_x_log10() +
+  guides(size = "none") +
+  labs(
+    title = "Expectativa de vida vs PIB per Capita",
+    subtitle = "Quanto maior o PIB per capita, maior é a expectativa de vida",
+    color = "Continente",
+    x = "PIB per capita",
+    y = "Expectativa de vida"
+  ) +
+  theme_light()
+
+ggplotly(p, tooltip = "text") %>% 
+  layout(
+    title = list(
+      text = paste(
+        "Expectativa de vida vs PIB per Capita",
+        "<br><sup>Quanto maior o PIB per capita, maior é a expectativa de vida</sup>"
+      )
+    )
+  )
+
+# Gráfico animado
+p <- gap_anual %>% 
+  ggplot(aes(
+    x = gdpcapita,
+    y = life_expectancy,
+    color = continent,
+    size = population,
+    text = paste(
+      "País:", country,
+      "<br>PIB per capita:", round(gdpcapita, 0),
+      "<br>Expectativa de vida:", round(life_expectancy, 0), "anos",
+      "<br>População:", scales::comma(population)
+    )
+  )) +
+  geom_point(alpha = 0.7) +
+  scale_x_log10() +
+  guides(size = "none") +
+  labs(
+    title = "Expectativa de vida vs PIB per Capita",
+    subtitle = "Quanto maior o PIB per capita, maior é a expectativa de vida",
+    color = "Continente",
+    x = "PIB per capita",
+    y = "Expectativa de vida"
+  ) +
+  theme_light() +
+  transition_time(year) +
+  ease_aes("linear")
+animate(p, nframes = 30, fps = 10,
+        renderer = gifski_renderer())
